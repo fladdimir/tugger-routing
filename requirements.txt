@@ -1,0 +1,3 @@
+casymda==0.2.17
+stable-baselines==2.9.0
+tensorflow==1.15.2
