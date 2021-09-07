@@ -62,7 +62,7 @@ class RunnableTuggerEnv(RunnableSimulation):
 
         done = False
         while not done:
-            action, _ = agent.predict(obs)
+            action, _ = agent.predict(obs, deterministic=False)
             # As some policy are stochastic by default (e.g. A2C or PPO),
             # you should also try to set deterministic=True when calling the .predict() method
             # sb-docu, unfortunately this does not seem to hold true here, since it did lead to 0 performance
@@ -80,4 +80,3 @@ def base_run_process_animation(agent_factory: BaseAgentFactory):
 
 def base_run_tilemap_animation(agent_factory: BaseAgentFactory):
     run_server(RunnableTuggerEnv(agent_factory, animation_type=AnimationType.TILEMAP))
-

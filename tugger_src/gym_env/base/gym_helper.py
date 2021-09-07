@@ -10,7 +10,7 @@ from simpy import Environment, Event
 
 
 class RewardHolder:
-    """ collects the reward per step and per episode """
+    """collects the reward per step and per episode"""
 
     def __init__(self):
         self.step_reward: float = 0
@@ -29,34 +29,34 @@ class RewardHolder:
 
 
 class ActionHolder:
-    """ provides a central point of access to global actions """
+    """provides a central point of access to global actions"""
 
     action_needed: Event  # will be succeeded somewhere when an action is needed, so that we can run until
     provided_action: Event  # to be succeeded to communicate back the action to whereever its needed
 
 
 class BaseModel:
-    """ consists of a simpy environment which can be used for execution """
+    """consists of a simpy environment which can be used for execution"""
 
     env: Environment
 
 
 class ModelStateConverter:
-    """ returns the observation for a given model """
+    """returns the observation for a given model"""
 
     def model_state_to_observation(self, model: BaseModel) -> Space:
         raise NotImplementedError()
 
 
 class BaseEnvironmentFactory:
-    """ creates simpy environments """
+    """creates simpy environments"""
 
     def create_env(self):
         return Environment()
 
 
 class RealtimeEnvironmentFactory(BaseEnvironmentFactory):
-    """ creates casymda realtime environments which can be controlled from a different process """
+    """creates casymda realtime environments which can be controlled from a different process"""
 
     def __init__(
         self,
@@ -73,5 +73,5 @@ class RealtimeEnvironmentFactory(BaseEnvironmentFactory):
 
     @classmethod
     def create_factor_instance(cls, factor=1.0) -> SyncedFloat:
-        """ obtain a factor instance for sharing """
+        """obtain a factor instance for sharing"""
         return ChangeableFactorRealtimeEnvironment.create_factor_instance(factor=factor)

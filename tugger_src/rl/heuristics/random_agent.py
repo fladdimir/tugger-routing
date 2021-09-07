@@ -3,7 +3,8 @@ from typing import Tuple, Type
 import numpy as np
 
 from tugger_src.gym_env.des_model.model import coordinates_holder
-from tugger_src.rl.base_agent import BaseAgent, BaseAgentFactory, evaluate_agent
+from tugger_src.rl.base_agent import BaseAgent, BaseAgentFactory
+from tugger_src.rl.evaluation import evaluate_agent
 from tugger_src.rl.web_animation.base_runnable_tugger_env import (
     base_run_process_animation,
     base_run_tilemap_animation,
@@ -11,7 +12,7 @@ from tugger_src.rl.web_animation.base_runnable_tugger_env import (
 
 
 class Agent(BaseAgent):
-    """ acts randomly """
+    """acts randomly"""
 
     def predict(
         self, observation: Type[np.ndarray], state=None, deterministic=None
@@ -22,7 +23,7 @@ class Agent(BaseAgent):
 
 
 class AgentFactory(BaseAgentFactory):
-    """ creates RandomAgents """
+    """creates RandomAgents"""
 
     def create_agent(self, tugger_env):
         return Agent()

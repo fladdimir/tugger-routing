@@ -62,7 +62,7 @@ class TuggerEntity(BaseEntity):
             )
 
     def get_load_text(self) -> str:
-        """ return new-line separated text of currently loaded amounts """
+        """return new-line separated text of currently loaded amounts"""
         return "\n".join(["%s: %s" % (load, self.load[load]) for load in self.load])
 
     def load_resource(self, resource: str, amount: float):

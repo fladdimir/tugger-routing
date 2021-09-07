@@ -37,9 +37,9 @@ highs = stations_high + tugger_high
 
 
 class TuggerEnvModelStateConverter(ModelStateConverter):
-    """ converts TuggerEnv simulation model state to an observation matching the defined space """
+    """converts TuggerEnv simulation model state to an observation matching the defined space"""
 
-    observation_space = Box(low=np.array(lows), high=np.array(highs),)
+    observation_space = Box(low=np.array(lows), high=np.array(highs))
 
     def model_state_to_observation(self, model: Model) -> object:
 

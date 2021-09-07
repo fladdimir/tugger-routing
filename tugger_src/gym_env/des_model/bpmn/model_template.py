@@ -33,6 +33,7 @@ from tugger_src.gym_env.des_model.visualization.tugger_tilemap_visualizer import
 
 coordinates_holder = coordinates_holder_setup.get_coordinates_holder()
 
+
 class Model(BaseModel):
     """generated model"""
 

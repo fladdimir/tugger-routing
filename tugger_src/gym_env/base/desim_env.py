@@ -13,8 +13,8 @@ from tugger_src.gym_env.base.gym_helper import (
 
 
 class DESimEnv(Env):
-    """ abstract base-wrapper for casymda-models as gym environment,
-        to be extended for simulation model-specific configuration """
+    """abstract base-wrapper for casymda-models as gym environment,
+    to be extended for simulation model-specific configuration"""
 
     model: BaseModel
     action_holder: ActionHolder
@@ -39,7 +39,7 @@ class DESimEnv(Env):
     """interface methods: step, reset, render"""
 
     def step(self, action: object) -> Tuple[object, float, bool, dict]:
-        """ takes action and executes simulation until next action is needed """
+        """takes action and executes simulation until next action is needed"""
 
         # 1. preparation
         self.reward_holder.reset_step_reward()
@@ -70,7 +70,7 @@ class DESimEnv(Env):
         return (observation, reward, done, info)
 
     def reset(self) -> object:
-        """ resets env and simulation model and return initial observation """
+        """resets env and simulation model and return initial observation"""
         self.before_reset()
 
         self._initialize_model()
@@ -83,18 +83,18 @@ class DESimEnv(Env):
         return initial_observation
 
     def render(self, mode=None):
-        """ des-model animation is controlled via sim env visualizer """
+        """des-model animation is controlled via sim env visualizer"""
         pass
 
     # helper methods:
 
     def _get_observation(self) -> object:
-        """ transform the current state of the simulation model into a gym-observation """
+        """transform the current state of the simulation model into a gym-observation"""
         observation = self.model_state_converter.model_state_to_observation(self.model)
         return observation
 
     def _initialize_model(self):
-        """ initialize the des-model during reset """
+        """initialize the des-model during reset"""
         self.finished_gym_steps_in_current_episode = 0
         self.time_of_last_step = 0
 
@@ -109,30 +109,30 @@ class DESimEnv(Env):
     # methods which might be useful to be overridden:
 
     def get_reward(self, time_needed_for_step: int, done: bool) -> float:
-        """ return reward of the last step, override for optional additional reward calculation,
-            reward could depend on the time_needed_for_step or whether the episode is done """
+        """return reward of the last step, override for optional additional reward calculation,
+        reward could depend on the time_needed_for_step or whether the episode is done"""
         collected_reward = self.reward_holder.step_reward
         self.reward_holder.increase_accumulated_reward(by=collected_reward)
         return collected_reward
 
     def get_info(self) -> dict:
-        """ returns empty dict by default """
+        """returns empty dict by default"""
         return {}
 
     def before_reset(self):
-        """ called first by reset() """
+        """called first by reset()"""
         pass
 
     # abstract methods to be defined by child class:
 
     def setup_sim(self):
-        """ set "model" instance variable """
+        """set "model" instance variable"""
         raise NotImplementedError()
 
     def initialize_action_and_reward_holder(self):
-        """ wire action_holder and reward_holder where needed by the model """
+        """wire action_holder and reward_holder where needed by the model"""
         raise NotImplementedError()
 
     def check_if_model_is_done(self) -> bool:
-        """ check defined criterium for the end of an episode here """
+        """check defined criterium for the end of an episode here"""
         raise NotImplementedError()

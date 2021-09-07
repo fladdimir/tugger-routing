@@ -10,7 +10,7 @@ from tugger_src.gym_env.des_model.blocks.tugger_entity import TuggerEntity
 
 
 class TuggerStation(VisualizableBlock, ClientBlock):
-    """ unloads the tugger at its current location and refills the corresponding product_station """
+    """unloads the tugger at its current location and refills the corresponding product_station"""
 
     FIXED_TIME = 5
     TIME_PER_RESOURCE_UNLOADED = 0

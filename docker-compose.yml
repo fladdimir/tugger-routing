@@ -2,27 +2,6 @@
 
 version: "3"
 services:
-  # 0. start sonarqube server
-  # docker-compose up sonarqube
-  sonarqube:
-    image: sonarqube:latest
-    networks:
-      - sonarqube
-      - default
-    ports:
-      - 9000:9000
-
-  # then: 2. run analysis (and parse coverage report from the test)
-  analysis:
-    # docker-compose up analysis
-    image: newtmitch/sonar-scanner:latest
-    volumes:
-      - .:/usr/src
-    networks:
-      - sonarqube
-    external_links:
-      - sonarqube
-
   # runs the browser-based animation example
   # docker-compose up web-animation-lia
   web-animation-lia:
@@ -45,39 +24,23 @@ services:
 
   # runs the training script
   # the overall number of training steps can be specified in: ./tugger_src/rl/stable_baselines/config.py
-  # outputs (gitignored) stats to ./training_results/_temp_ACER_[#steps].monitor.csv
-  # saves the trained agent at the end to ./training_results/_temp_ACER_[#steps].zip
-  # docker-compose up acer-training
-  acer-training:
+  # outputs (gitignored) stats to ./training_results/_temp_ppo_[#steps].monitor.csv
+  # saves the trained agent at the end to ./training_results/_temp_ppo_[#steps].zip
+  # docker-compose up ppo-training
+  ppo-training:
     build: ./
     volumes:
       - .:/usr/src
-    command: "python3 ./exec/acer/training.py"
+    command: "python3 ./exec/ppo/training.py"
 
   # show animation with the trained agent
-  # loads agent from ./training_results/_temp_ACER_[#steps].zip
+  # loads agent from ./training_results/_temp_ppo_[#steps].zip
   # [#steps] as specified in ./tugger_src/rl/stable_baselines/config.py
-  # docker-compose up acer-web-animation-tilemap
-  acer-web-animation-tilemap:
+  # docker-compose up ppo-web-animation-tilemap
+  ppo-web-animation-tilemap:
     build: ./
     volumes:
       - .:/usr/src
     ports:
       - "5000:5000"
-    command: "python3 ./exec/acer/run_tilemap_web_animation.py"
-
-  # plot training performance
-  # loads training history from ./training_results/_temp_ACER_[#steps].monitor.csv
-  # [#steps] as specified in ./tugger_src/rl/stable_baselines/config.py
-  # docker-compose up acer-plot-training
-  # on mac this works: https://stackoverflow.com/questions/37826094/xt-error-cant-open-display-if-using-default-display
-  acer-plot-training:
-    build: ./
-    volumes:
-      - .:/usr/src
-    environment:
-      - DISPLAY=docker.for.mac.host.internal:0
-    command: "python3 ./exec/acer/plot.py"
-
-networks:
-  sonarqube:
+    command: "python3 ./exec/ppo/run_tilemap_web_animation.py"

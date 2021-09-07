@@ -1,4 +1,4 @@
-from stable_baselines import A2C as Agent
+from stable_baselines3 import A2C as Agent
 
 from tugger_src.rl.stable_baselines.base import (
     load_run_process_animation_base,

@@ -1,14 +1,12 @@
-from tugger_src.gym_env.des_model.blocks.product_station import ProductStation
-from gym.spaces import Discrete
+from enum import Enum
 
+from gym.spaces import Discrete
 from tugger_src.gym_env.base.desim_env import DESimEnv
 from tugger_src.gym_env.base.gym_helper import BaseEnvironmentFactory
 from tugger_src.gym_env.des_model.model import Model
 from tugger_src.gym_env.tugger_env_model_state_converter import (
     TuggerEnvModelStateConverter,
 )
-
-from enum import Enum
 
 
 class Info(Enum):
@@ -24,7 +22,7 @@ class TuggerEnv(DESimEnv):
     model: Model
 
     def __init__(self, environment_factory=BaseEnvironmentFactory()):
-        """ optional environment provider e.g. for setup of RealtimeEnvironments """
+        """optional environment provider e.g. for setup of RealtimeEnvironments"""
 
         action_space = Discrete(self.NUMBER_OF_ACTIONS)
         observation_space = TuggerEnvModelStateConverter.observation_space
@@ -68,7 +66,6 @@ class TuggerEnv(DESimEnv):
         self.reward_holder.increase_accumulated_reward(by=corrected_reward)
         return corrected_reward
 
-
     def get_info(self):
         info = {}
         info[Info.FINISHED_PRODUCTS.value] = self.model.sink.overall_count_in
@@ -95,4 +92,6 @@ class TuggerEnv(DESimEnv):
     # private helper
 
     def _calculate_expected_reward(self):
-        self.expected_reward = max(self.expected_reward, self.reward_holder.accumulated_reward_raw)
+        self.expected_reward = max(
+            self.expected_reward, self.reward_holder.accumulated_reward_raw
+        )

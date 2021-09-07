@@ -4,7 +4,8 @@ from tugger_src.gym_env.des_model.blocks.product_station import ProductStation
 from tugger_src.gym_env.des_model.blocks.tugger_stock import TuggerStock
 from tugger_src.gym_env.des_model.model import coordinates_holder
 from tugger_src.gym_env.tugger_env import TuggerEnv
-from tugger_src.rl.base_agent import BaseAgent, BaseAgentFactory, evaluate_agent
+from tugger_src.rl.base_agent import BaseAgent, BaseAgentFactory
+from tugger_src.rl.evaluation import evaluate_agent
 from tugger_src.rl.web_animation.base_runnable_tugger_env import (
     base_run_process_animation,
     base_run_tilemap_animation,
@@ -12,7 +13,7 @@ from tugger_src.rl.web_animation.base_runnable_tugger_env import (
 
 
 class Agent(BaseAgent):
-    """ always delivers the maximum amount of material (FTL) to the station with the lowest invenvory """
+    """always delivers the maximum amount of material (FTL) to the station with the lowest invenvory"""
 
     def __init__(self, env: TuggerEnv) -> None:
         self.env = env
@@ -85,7 +86,7 @@ class Agent(BaseAgent):
         return action, None
 
     def _find_product_station_with_lowest_inventory_from_list(
-        self, product_stations: List[ProductStation],
+        self, product_stations: List[ProductStation]
     ) -> ProductStation:
         min_inv = min(ps.container.level for ps in product_stations)
         return next(ps for ps in product_stations if ps.container.level == min_inv)

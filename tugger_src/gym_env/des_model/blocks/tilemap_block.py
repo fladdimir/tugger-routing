@@ -5,7 +5,7 @@ from typing import Optional
 
 
 class TilemapBlock:
-    """ qualifies for injection of a tilemap visualizer """
+    """qualifies for injection of a tilemap visualizer"""
 
     def __init__(self):
         self.tilemap_visualizer: Optional[TuggerTilemapVisualizer]

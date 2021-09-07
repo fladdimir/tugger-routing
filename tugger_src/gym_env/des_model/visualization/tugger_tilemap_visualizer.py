@@ -4,7 +4,7 @@ from casymda.visualization.tilemap.tilemap_visualizer import TilemapVisualizer
 
 
 class TuggerTilemapVisualizer(TilemapVisualizer):
-    """ casymda tilemap visualizer with additional text visualization methods """
+    """casymda tilemap visualizer with additional text visualization methods"""
 
     def __init__(
         self,
@@ -24,14 +24,14 @@ class TuggerTilemapVisualizer(TilemapVisualizer):
     def animate_text(
         self, key: str, coordinates: Tuple[float, float], text: str, anchor="se"
     ):
-        """ write the text to canvas """
+        """write the text to canvas"""
         if key not in self.texts:
             self.texts[key] = Text(self.canvas, coordinates, text, anchor)
         self.texts[key].update_text(coordinates, text)
 
 
 class Text:
-    """ helper class for text management """
+    """helper class for text management"""
 
     def __init__(
         self,

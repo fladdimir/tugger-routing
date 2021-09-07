@@ -4,20 +4,16 @@ This repository shows the application of reinforcement learning to solve a parti
 
 ## Quick-Start
 
-Train an ACER-agent (by default for only 10,000 steps, which should take <1min):
+Train an ppo-agent (by default for only 10,000 steps, which should take <1min):
 
 ```sh
-docker-compose up acer-training
+docker-compose up ppo-training
 ```
 
-Plot performance (might require additional steps for connecting the display):
+Tilemap-animation of the trained agent (not yet awesome after only 10k steps) (visit <http://localhost:5000>):
 
 ```sh
-docker-compose up acer-plot-training
+docker-compose up ppo-web-animation-tilemap
 ```
 
-Tilemap-animation of the trained agent (visit <http://localhost:5000>):
-
-```sh
-docker-compose up acer-web-animation-tilemap
-```
+(see commands in docker-compose.yml for info on which scripts are executable)

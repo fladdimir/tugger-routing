@@ -2,9 +2,7 @@ import sys
 
 sys.path.append(".")
 
-from tugger_src.rl.stable_baselines.a2c import (
-    load_run_tilemap_animation as action,
-)
+from tugger_src.rl.stable_baselines.a2c import load_run_tilemap_animation as action
 
 if __name__ == "__main__":
     action()

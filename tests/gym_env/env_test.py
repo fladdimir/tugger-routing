@@ -1,15 +1,14 @@
 """ basic tests for the defined env """
 import random
 
+import stable_baselines3.common.env_checker
 from tugger_src.gym_env.base.gym_helper import RealtimeEnvironmentFactory
 from tugger_src.gym_env.tugger_env import TuggerEnv
-from tugger_src.gym_env.des_model.model import Model
-import stable_baselines.common.env_checker
 
 
 def test_with_stable_baselines_gym_env_checker():
     env = TuggerEnv()
-    stable_baselines.common.env_checker.check_env(env)
+    stable_baselines3.common.env_checker.check_env(env)
 
 
 def test_that_tugger_env_can_be_instantiated():

@@ -4,7 +4,7 @@ from tugger_src.gym_env.des_model.blocks.base_entity import BaseEntity
 
 
 class ProductEntity(BaseEntity):
-    """ has a location (name), coordinates, and an icon which can be updated """
+    """has a location (name), coordinates, and an icon which can be updated"""
 
     NUMBER_OF_ICONS = 9
     ICON_PATHS = [

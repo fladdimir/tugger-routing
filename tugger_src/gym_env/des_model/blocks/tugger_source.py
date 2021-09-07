@@ -16,9 +16,7 @@ class TuggerSource(VisualizableBlock, ClientBlock, TilemapBlock):
 
     NUMBER_OF_TUGGERS = 1
 
-    def __init__(
-        self, env, name, xy=None, ways=None, location="unset",
-    ):
+    def __init__(self, env, name, xy=None, ways=None, location="unset"):
 
         super().__init__(env, name, xy=xy, ways=ways)
 

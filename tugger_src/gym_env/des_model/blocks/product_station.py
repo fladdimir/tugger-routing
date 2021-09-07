@@ -96,7 +96,7 @@ class ProductStation(VisualizableBlock, TilemapBlock):
         self.processing_a_product = False
 
     def animate_entity_on_enter(
-        self, entity: Entity, from_block: Optional[Block], to_block: Optional[Block],
+        self, entity: Entity, from_block: Optional[Block], to_block: Optional[Block]
     ):
         # animation on enter
         e = cast(ProductEntity, entity)
